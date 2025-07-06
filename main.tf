@@ -4,6 +4,7 @@ provider "aws" {
   #secret_key = ""
 }
 
+
 # Get the default VPC
 data "aws_vpc" "default" {
   default = true
