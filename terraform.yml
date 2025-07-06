@@ -1,4 +1,4 @@
-name: Deploy EC2 with Terraform
+name: Deploy and Destroy EC2 with Terraform
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - '**.tf'
       - '.github/workflows/terraform.yml'
     branches:
-      - main  # or master
+      - main
 
 jobs:
   terraform:
-    name: Apply Terraform
+    name: Apply and Destroy Terraform
     runs-on: ubuntu-latest
 
     env:
@@ -25,7 +25,7 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.7.5  # Or your preferred version
+          terraform_version: 1.7.5
 
       - name: Initialize Terraform
         run: terraform init
@@ -38,3 +38,9 @@ jobs:
 
       - name: Apply Terraform
         run: terraform apply -auto-approve
+
+      - name: Wait before Destroy
+        run: sleep 60  # Optional: give some time before destroying
+
+      - name: Destroy Terraform
+        run: terraform destroy -auto-approve
