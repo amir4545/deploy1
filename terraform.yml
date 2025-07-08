@@ -36,11 +36,11 @@ jobs:
       - name: Plan Terraform
         run: terraform plan
 
-      - name: Apply Terraform
-        run: terraform apply -auto-approve
+      #- name: Apply Terraform
+      #  run: terraform apply -auto-approve
 
-      - name: Wait before Destroy
-        run: sleep 60  # Optional: give some time before destroying
+      #- name: Wait before Destroy
+      #  run: sleep 60  # Optional: give some time before destroying
 
       - name: Destroy Terraform
         run: terraform destroy -auto-approve
